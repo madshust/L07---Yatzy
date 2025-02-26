@@ -28,6 +28,33 @@ img {
     gap: 10px;
 }
 
+#dices {
+    display: grid;
+    grid-template-rows: auto auto;
+    gap: 30px;
+    justify-content: center;
+    text-align: center;
+    grid-row: 1;
+}
+
+#scoreboard {
+    grid-template-columns: 1fr 0.5fr 0.1fr 0.1fr 0.1fr 0.2fr;
+    grid-row: 2;
+}
+
+#diceContainer {
+    grid-row: 1;
+    display: flex;
+    gap: 50px;
+    justify-content: center;
+}
+
+#counterAndButton {
+    grid-row: 2;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
 .left {
     grid-column: 1;
 }
@@ -56,24 +83,12 @@ img {
     grid-column: 5;
 }
 
-#dices {
-    grid-row: 1;
-}
-
-#scoreboard {
-    grid-template-columns: 1fr 0.5fr 0.1fr 0.1fr 0.1fr 0.2fr;
-    grid-row: 2;
-}
-
 #counter {
-    grid-column: 1;
+    justify-self: start;
 }
 
 #rollButton {
-    grid-column: 2;
-}
-
-.diceContainer {
-    min-width: fit-content;
-    gap: 10px;
+    justify-self: end;
+    margin-right: 20px;
+    width: 80px;
 }
