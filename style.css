@@ -13,6 +13,11 @@ input {
     max-width: 3em;
 }
 
+img {
+    max-width: 4em;
+    max-height: 4em;
+}
+
 
 .container {
     display: grid;
@@ -58,4 +63,17 @@ input {
 #scoreboard {
     grid-template-columns: 1fr 0.5fr 0.1fr 0.1fr 0.1fr 0.2fr;
     grid-row: 2;
+}
+
+#counter {
+    grid-column: 1;
+}
+
+#rollButton {
+    grid-column: 2;
+}
+
+.diceContainer {
+    min-width: fit-content;
+    gap: 10px;
 }

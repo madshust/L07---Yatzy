@@ -5,16 +5,25 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
+    <script type="module" src="app.js" defer></script>
     <title>Test</title>
 </head>
 
 <body>
     <div id="mainbox">
         <div class="container" id="dices">
-            <p>TEST</p>
+            <div class="diceContainer">
+                <img src="png/dice-six-faces-one.png">
+                <img src="png/dice-six-faces-one.png">
+                <img src="png/dice-six-faces-one.png">
+                <img src="png/dice-six-faces-one.png">
+                <img src="png/dice-six-faces-one.png">
+            </div>
+            <p id="counter">Turn 1</p>
+            <button id="rollButton">Roll</button>
         </div>
         <div class="container" id="scoreboard">
-            <label for="1s" class="left">1s</label><input id="1s" class="number" readonly> 
+            <label for="1s" class="left">1s</label><input id="1s" class="number" readonly>
             <label for="2s" class="left">2s</label><input id="2s" class="number" readonly>
             <label for="3s" class="left">3s</label><input id="3s" class="number" readonly>
             <label for="4s" class="left">4s</label><input id="4s" class="number" readonly>
@@ -27,7 +36,8 @@
             <label for="threesame" class="left">Three same</label><input id="threesame" class="number" readonly>
             <label for="foursame" class="left">Four same</label><input id="foursame" class="number" readonly>
             <label for="fullHouse" class="left">Full house</label><input id="fullHouse" class="number" readonly>
-            <label for="smallStraight" class="left">Small Straight</label><input id="smallStraight" class="number" readonly>
+            <label for="smallStraight" class="left">Small Straight</label><input id="smallStraight" class="number"
+                readonly>
             <label for="bigStraight" class="left">Big straight</label><input id="bigStraight" class="number" readonly>
             <label for="chance" class="left">Chancen</label><input id="chance" class="number" readonly>
             <label for="yatzy" class="left">Yatzy</label><input id="yatzy" class="number" readonly>
