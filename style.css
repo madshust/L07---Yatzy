@@ -1,23 +1,27 @@
 #mainbox {
     display: grid;
-    max-width: 30%;
+    row-gap: 20px;
+    border: solid;
     margin: auto;
-    row-gap: 10px;
-}
-
-.container {
-    display: grid;
-    grid-template-columns: 1fr 0.2fr 0.1fr 0.1fr 0.1fr 0.5fr;
-    grid-template-rows: auto;
-    gap: 10px;
-    border:solid;
-    padding: 5%;
+    max-width: 30%;
+    min-height: 80vh;
+    padding: 1%;
+    background-color: beige;
 }
 
 input {
     max-width: 3em;
 }
 
+
+.container {
+    display: grid;
+    border: solid;
+    grid-template-rows: auto;
+    background-color: rgb(235, 174, 122);
+    padding: 5%;
+    gap: 10px;
+}
 
 .left {
     grid-column: 1;
@@ -27,35 +31,31 @@ input {
     grid-column: 2;
 }
 
-.sum {
-    grid-column: 4;
-    grid-row: 6
-    
-}
-
-.sumLabel {
+#sumLabel {
     grid-column: 3;
-    grid-row: 6;
 }
 
-.bonus {
-    grid-column: 6;
-    grid-row: 6;
+#sumInput {
+    grid-column: 4;
 }
 
-.bonusLabel {
-    grid-column: 5;
-    grid-row: 6;
-}
-
-.total {
-    grid-column: 6;
-}
-
-.totalLabel {
+#bonusLabel {
     grid-column: 5;
 }
 
-input {
-    max-width: 3em;
+#bonusInput {
+    grid-column: 6;
+}
+
+#totalLabel {
+    grid-column: 5;
+}
+
+#dices {
+    grid-row: 1;
+}
+
+#scoreboard {
+    grid-template-columns: 1fr 0.5fr 0.1fr 0.1fr 0.1fr 0.2fr;
+    grid-row: 2;
 }
