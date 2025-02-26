@@ -91,3 +91,7 @@ img {
     margin-right: 20px;
     width: 80px;
 }
+
+.selected {
+    opacity: 50%;
+}

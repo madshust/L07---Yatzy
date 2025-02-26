@@ -7,24 +7,40 @@ let diceImages = [
     { value: 6, path: 'png/dice-six-faces-six.png' },
 ];
 
-let containerNode = document.getElementById("diceContainer")
+const images = document.querySelectorAll("img");
 
-export function showDice(diceArray) {
+export function updateDice(diceArray) {
 
-    containerNode.innerHTML = '';
+    for (let i in diceArray) {
+        const die = diceArray[i];
 
-    for (let dice of diceArray) {
+        const element = document.getElementById(`die${i}`)
 
-        for (let diceImage of diceImages) {
-
-            if (diceImage.value === dice.value) {
-                let img = document.createElement("img")
-                img.src = diceImage.path
-                img.class = dice.status === "selected" ? "selected" : "unselected";
-                containerNode.appendChild(img)
+        for (let img of diceImages) {
+            if (img.value === die.value) {
+                element.src = img.path;
+                element.class = die.status === "selected" ? "selected" : "unselected";
             }
         }
     }
+}
+
+export function lockDice(diceArray) {
+
+    images.forEach((img, index) => {
+        img.addEventListener("click", function () {
+
+            let dice = diceArray[index];
+
+            if (dice.status === "unselected") {
+                dice.status = "selected";
+                img.classList.add("selected")
+            } else {
+                dice.status = "unselected";
+                img.classList.remove("selected");
+            }
+        })
+    })
 }
 
 
