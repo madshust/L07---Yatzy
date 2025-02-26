@@ -1,0 +1,61 @@
+#mainbox {
+    display: grid;
+    max-width: 30%;
+    margin: auto;
+    row-gap: 10px;
+}
+
+.container {
+    display: grid;
+    grid-template-columns: 1fr 0.2fr 0.1fr 0.1fr 0.1fr 0.5fr;
+    grid-template-rows: auto;
+    gap: 10px;
+    border:solid;
+    padding: 5%;
+}
+
+input {
+    max-width: 3em;
+}
+
+
+.left {
+    grid-column: 1;
+}
+
+.number {
+    grid-column: 2;
+}
+
+.sum {
+    grid-column: 4;
+    grid-row: 6
+    
+}
+
+.sumLabel {
+    grid-column: 3;
+    grid-row: 6;
+}
+
+.bonus {
+    grid-column: 6;
+    grid-row: 6;
+}
+
+.bonusLabel {
+    grid-column: 5;
+    grid-row: 6;
+}
+
+.total {
+    grid-column: 6;
+}
+
+.totalLabel {
+    grid-column: 5;
+}
+
+input {
+    max-width: 3em;
+}
