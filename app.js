@@ -15,8 +15,7 @@ let diceArray = [
 let counter = 1;
 
 rollButton.addEventListener("click", function () {
-
-
+    
     diceArray = rollDice(diceArray);
 
     showDice(diceArray);
@@ -24,3 +23,5 @@ rollButton.addEventListener("click", function () {
 
 }
 )
+
+

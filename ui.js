@@ -20,7 +20,7 @@ export function showDice(diceArray) {
             if (diceImage.value === dice.value) {
                 let img = document.createElement("img")
                 img.src = diceImage.path
-                img.id = dice.status === "selected" ? "selected" : "unselected";
+                img.class = dice.status === "selected" ? "selected" : "unselected";
                 containerNode.appendChild(img)
             }
         }
