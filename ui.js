@@ -1,3 +1,5 @@
+import { getResult } from "./rules.js";
+
 let diceImages = [
     { value: 1, path: 'png/dice-six-faces-one.png' },
     { value: 2, path: 'png/dice-six-faces-two.png' },
@@ -25,22 +27,40 @@ export function updateDice(diceArray) {
     }
 }
 
-export function lockDice(diceArray) {
+export function lockDieUI(index, status) {
+    const img = document.getElementById(`die${index}`);
 
-    images.forEach((img, index) => {
-        img.addEventListener("click", function () {
+    if (status === "selected") {
+        img.classList.add("selected");
+    } else {
+        img.classList.remove("selected");
+    }
+}
 
-            let dice = diceArray[index];
+export function lockFieldUI(fieldId) {
+    const field = document.getElementById(fieldId).classList.add("locked");
+}
 
-            if (dice.status === "unselected") {
-                dice.status = "selected";
-                img.classList.add("selected")
-            } else {
-                dice.status = "unselected";
-                img.classList.remove("selected");
-            }
-        })
-    })
+export function updateScoreboard() {
+
+    let scores = getResult();
+
+    document.getElementById("1s").value = scores[1];
+    document.getElementById("2s").value = scores[2];
+    document.getElementById("3s").value = scores[3];
+    document.getElementById("4s").value = scores[4];
+    document.getElementById("5s").value = scores[5];
+    document.getElementById("6s").value = scores[6];
+    document.getElementById("onepair").value = scores[7];
+    document.getElementById("twopairs").value = scores[8];
+    document.getElementById("threesame").value = scores[9];
+    document.getElementById("foursame").value = scores[10];
+    document.getElementById("fullHouse").value = scores[11];
+    document.getElementById("smallStraight").value = scores[12];
+    document.getElementById("bigStraight").value = scores[13];
+    document.getElementById("chance").value = scores[14];
+    document.getElementById("yatzy").value = scores[15];
+
 }
 
 

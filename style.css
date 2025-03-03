@@ -95,3 +95,7 @@ img {
 .selected {
     opacity: 50%;
 }
+
+.locked {
+    background-color: green;
+}
