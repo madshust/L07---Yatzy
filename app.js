@@ -1,5 +1,5 @@
-import { changeDiceStatus, rollDice } from "./controller.js";
-import { lockDieUI, lockFieldUI, updateDice, updateScoreboard } from "./ui.js";
+import { changeDiceStatus, gameOver, resetValues, rollDice } from "./controller.js";
+import { lockDieUI, lockFieldUI, updateDice, updateScoreboard, resetValuesUI, updateSumAndTotalAndBonus, resetFieldsNotChosen } from "./ui.js";
 
 let diceArray = [
     { value: 1, status: "unselected" },
@@ -8,6 +8,8 @@ let diceArray = [
     { value: 1, status: "unselected" },
     { value: 1, status: "unselected" },
 ]
+
+let fieldArray = document.querySelectorAll(".number");
 
 export function getValues() {
     let values = [];
@@ -21,15 +23,19 @@ export function getValues() {
 const rollButton = document.getElementById("rollButton")
 
 
-let counter = 1;
+let counter = 0;
 
 rollButton.addEventListener("click", function () {
 
-    diceArray = rollDice(diceArray);
-    updateDice(diceArray);
-    updateScoreboard();
-    counter++;
-    document.getElementById("counter").innerText = `Turn ${counter}`;
+    if (counter < 3) {
+        diceArray = rollDice(diceArray);
+        updateDice(diceArray);
+        updateScoreboard();
+        counter++;
+        document.getElementById("counter").innerText = `Turn ${counter}`;
+    } else {
+        rollButton.disabled = true;
+    }
 });
 
 const images = document.querySelectorAll('img');
@@ -44,11 +50,22 @@ const scores = document.getElementById("scoreboard");
 scores.addEventListener("click", function (event) {
     let clickedField = event.target;
 
-    if (clickedField.tagName === "INPUT") {
+    if (clickedField.tagName === "INPUT" && clickedField.classList.contains("number")) {
         lockFieldUI(clickedField.id);
+        clickedField.disabled = true;
+        rollButton.disabled = false;
+        updateSumAndTotalAndBonus(fieldArray);
+        resetValues(diceArray);
+        resetValuesUI();
+        counter = 0;
+        document.getElementById("counter").innerText = `Turn ${counter}`;
+        resetFieldsNotChosen();
     }
 
+    // Tjekker om spillet er ovre
+    gameOver(fieldArray, diceArray);
 })
+
 
 
 

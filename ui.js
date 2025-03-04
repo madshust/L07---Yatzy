@@ -1,3 +1,4 @@
+import { calculateBonus, calculateSum, calculateTotal } from "./controller.js";
 import { getResult } from "./rules.js";
 
 let diceImages = [
@@ -8,8 +9,6 @@ let diceImages = [
     { value: 5, path: 'png/dice-six-faces-five.png' },
     { value: 6, path: 'png/dice-six-faces-six.png' },
 ];
-
-const images = document.querySelectorAll("img");
 
 export function updateDice(diceArray) {
 
@@ -27,6 +26,16 @@ export function updateDice(diceArray) {
     }
 }
 
+export function resetValuesUI() {
+    const images = document.querySelectorAll("img");
+
+    for (let i = 0; i < images.length; i++) {
+        images[i].src = 'png/dice-six-faces-one.png';
+        images[i].classList.remove("selected");
+    }
+
+}
+
 export function lockDieUI(index, status) {
     const img = document.getElementById(`die${index}`);
 
@@ -38,29 +47,60 @@ export function lockDieUI(index, status) {
 }
 
 export function lockFieldUI(fieldId) {
-    const field = document.getElementById(fieldId).classList.add("locked");
+    const field = document.getElementById(fieldId);
+
+    if (!field.classList.contains("locked")) {
+        field.classList.add("locked");
+    } else {
+        field.classList.remove("locked");
+    }
 }
 
 export function updateScoreboard() {
 
+    const scoreboardValues = document.getElementById("scoreboard");
+    const fields = scoreboardValues.querySelectorAll(".number");
     let scores = getResult();
 
-    document.getElementById("1s").value = scores[1];
-    document.getElementById("2s").value = scores[2];
-    document.getElementById("3s").value = scores[3];
-    document.getElementById("4s").value = scores[4];
-    document.getElementById("5s").value = scores[5];
-    document.getElementById("6s").value = scores[6];
-    document.getElementById("onepair").value = scores[7];
-    document.getElementById("twopairs").value = scores[8];
-    document.getElementById("threesame").value = scores[9];
-    document.getElementById("foursame").value = scores[10];
-    document.getElementById("fullHouse").value = scores[11];
-    document.getElementById("smallStraight").value = scores[12];
-    document.getElementById("bigStraight").value = scores[13];
-    document.getElementById("chance").value = scores[14];
-    document.getElementById("yatzy").value = scores[15];
+    const mapping = {
+        "1s": 1, "2s": 2, "3s": 3, "4s": 4, "5s": 5, "6s": 6,
+        "onepair": 7, "twopairs": 8, "threesame": 9, "foursame": 10,
+        "fullHouse": 11, "smallStraight": 12, "bigStraight": 13,
+        "chance": 14, "yatzy": 15
+    }
 
+    fields.forEach(field => {
+        if (!field.classList.contains("locked")) {
+            let index = mapping[field.id];
+            if (index !== undefined && scores[index] !== undefined) {
+                field.value = scores[index];
+            }
+        }
+    })
+}
+
+export function updateSumAndTotalAndBonus(fieldArray) {
+
+    const sumField = document.getElementById("sumInput");
+    sumField.value = calculateSum(fieldArray);
+
+    const totalField = document.getElementById("totalInput");
+    totalField.value = calculateTotal(fieldArray);
+
+    const bonusField = document.getElementById("bonusInput");
+    bonusField.value = calculateBonus(fieldArray);
+
+}
+
+export function resetFieldsNotChosen() {
+    const scoreboard = document.getElementById("scoreboard");
+    const fields = scoreboard.querySelectorAll(".number");
+
+    fields.forEach(field => {
+        if (!field.classList.contains("locked")) {
+            field.value = 0;
+        }
+    })
 }
 
 
